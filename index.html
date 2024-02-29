@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo</title>
+</head>
+<body>
+    <script src="tmi.js"></script>
+    <script>
+        const client = new tmi.Client({ channels: ['devrogerinho'] });
+        client.connect();
+        client.on('message', (channel, tags, message, self) => {
+        console.log(`${tags['display-name']}: ${message}`);
+
+        const titulo = document.createElement('h1');
+        titulo.innerText = `${tags['display-name']}: ${message}`
+        document.body.appendChild(titulo);
+
+        });
+    </script>
+</body>
+</html>
